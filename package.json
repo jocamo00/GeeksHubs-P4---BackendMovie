@@ -1,0 +1,33 @@
+{
+  "name": "moviebackend",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.1",
+    "sequelize": "^5.21.5",
+    "sqlite3": "^4.1.1"
+  },
+  "description": "Realización de un backend, usando para el filtrado el cine como tematica",
+  "main": "app.js",
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jocamo00/GeeksHubs-P4---BackendMovie.git"
+  },
+  "author": "Jose Carreres",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jocamo00/GeeksHubs-P4---BackendMovie/issues"
+  },
+  "homepage": "https://github.com/jocamo00/GeeksHubs-P4---BackendMovie#readme"
+}
