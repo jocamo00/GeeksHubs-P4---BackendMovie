@@ -10,12 +10,20 @@ router.get('/', (req, res, next) => {
 });
 
 
-router.get('/:id', (req, res) => {
+router.get('/id/:id', (req, res) => {
   let _id = req.params.id
   Actor.findAll({ where: { id: _id }}).then( actores => {
       res.json(actores);
   });
-});
+}); 
+
+
+router.get('/:nombre', (req, res) => {
+  let _nombre = req.params.nombre
+  Actor.findAll({ where: { nombre: _nombre }}).then( actores => {
+      res.json(actores);
+  });
+}); 
 
 
 module.exports = router;

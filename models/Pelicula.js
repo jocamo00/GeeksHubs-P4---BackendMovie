@@ -21,7 +21,7 @@ Pelicula.sync({force: true})
     .then( () => {
         Pelicula.bulkCreate(
             times(30, () => ({
-                titulo: faker.name.title()
+                titulo: faker.name.lastName()
             }))
         )
     });
