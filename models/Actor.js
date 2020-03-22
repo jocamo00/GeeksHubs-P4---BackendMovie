@@ -4,6 +4,8 @@ const sequelize = require('./sequelize');
 const faker = require('faker');
 const times = require('lodash.times');
 
+const Pelicula = require('./Pelicula');
+
 
 class Actor extends Sequelize.Model {}
 
