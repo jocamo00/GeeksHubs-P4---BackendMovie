@@ -18,6 +18,9 @@
   "description": "Realización de un backend, usando para el filtrado el cine como tematica",
   "main": "app.js",
   "devDependencies": {
+    "faker": "^4.1.0",
+    "lodash.random": "^3.2.0",
+    "lodash.times": "^4.3.2",
     "nodemon": "^2.0.2"
   },
   "repository": {
