@@ -26,5 +26,13 @@ router.get('/:nombre', (req, res) => {
 }); 
 
 
+router.get('/provincia/:provincia', (req, res) => {
+  let _provincia = req.params.provincia
+  Cine.findAll({ where: { provincia: _provincia }}).then( cines => {
+      res.json(cines);
+  });
+}); 
+
+
 
 module.exports = router;
