@@ -10,4 +10,12 @@ router.get('/', (req, res, next) => {
 });
 
 
+router.get('/:id', (req, res) => {
+  let _id = req.params.id
+  Cine.findAll({ where: { id: _id }}).then( cines => {
+      res.json(cines);
+  });
+});
+
+
 module.exports = router;

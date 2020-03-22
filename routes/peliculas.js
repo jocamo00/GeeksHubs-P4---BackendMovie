@@ -10,4 +10,12 @@ router.get('/', (req, res, next) => {
 });
 
 
+router.get('/:id', (req, res) => {
+  let _id = req.params.id
+  Pelicula.findAll({ where: { id: _id }}).then( peliculas => {
+      res.json(peliculas);
+  });
+});
+
+
 module.exports = router;
