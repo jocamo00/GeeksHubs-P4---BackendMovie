@@ -1,41 +1,131 @@
 # GeeksHubs-P4---BackendMovie
-Realización de un backend, usando para el filtrado el cine como tematica
 
-_El proyecto es una web que consume de la API themoviedb, donde se puede consultar y filtrar peliculas. Consta de una página principal donde se puede realizar la busqueda de la pelicula deseada, ver la imagen de portada, titulo, descripción, genero y trailer de la pelicula. La web dispone de una segunda página que muestra las peliculas más populares.A sido realizada con HTML5, CSS3, JavaScript y Bootstrap._
+_El proyecto es un backend, donde se puede realizar la consulta o el filtrado de datos relacionados con el mundo del cine. Se puede filtrar actores por id, nombre y apellido. Filtrar peliculas por su id y titulo y filtrar cines por su id, nombre y provincia. También se pueden generar nuevos actores, peliculas y cines mediante un método post.A sido realizado usando node junto con los modulos express-generator, sequelize, sqlite3. Como herramienta de ayuda al desarrollo y pruebas también se a utilizado los modulos nodemon y faker._
 
 ## Comenzando 🚀
 
-_Para obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas. Solo necesitas descargarlo y descomprimirlo._
+_Para obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas, necesitaras descargarlo y descomprimirlo. También te será necesario una herramienta que permita el envio de peticiones HTTP REST, como puede ser Postman._
 
 
 ### Pre-requisitos 📋
 
-_Solo te será necesario descargar el proyecto y un navegador web para poder ejecutar el proyecto_
+_Te será necesario descargar el proyecto y una herramienta que te permita el envio de peticiones HTTP REST, aunque si solo vas a realizar consutas GET podrás utilizar un navegardor web._
+
+
+### Tecnologías🛠️
+
+Programas utilizados para el desarrollo y pruebas del proyecto:
+
+* [VSCode] - Editor de código usado - (https://code.visualstudio.com/).
+* [Sequelize - Es un ORM Node.js.
+* [Sqlite3] - Sistema de gestión de bases de datos relacional.
+* [node.js] - Entorno multiplataforma para la capa del servidor.
+* [Express] - Proporciona herramientas para servidores HTTP.
+* [Postman] - Herramienta para el envio de peticiones HTTP REST.
+* [Faker] - Generador de datos falsos para la realización de pruebas.
+* [Nodemon] - Reinicia automáticamente el servidor.
+*[GitHub] - Control de versiones.
 
 
 ### Instalación 🔧
 
-_Una vez descargado y descomprimido, ejecuta preferiblemente el archivo index.html_
+Requiere [Node.js](https://nodejs.org/) v4+ para ejecutarse.
+
+Una vez descargado, descomprimido y ubicado en el directorio del proyecto, instale las dependencias y devDependencies.
+
+```sh
+$ npm install -d
+```
+
+Inicie el servidor
+
+```sh
+$ npm start
+```
+
+Las instrucciones sobre cómo usarlas en su propia aplicación están vinculadas a continuación.
+GitHub  [plugins/github/README.md][PlGh] 
 
 
-## Construido con 🛠️
+#### Código
+
+Conector Base de Datos
+```sh
+const sequelize = new Sequelize({
+    dialect: 'sqlite',
+    storage: './dbPeliculas.sqlite'
+  });
+
+  sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
+```
 
 
-* [Bootstrap](https://getbootstrap.com/) - El framework web usado
-* [VSCode](https://code.visualstudio.com/) - Editor de código usado
-* [GitHub](https://github.com/) - Control de versiones
-* [HTML5]
-* [CSS3]
-* [JavaScript]
+Modelo de la tabla Actor
+```sh
+class Actor extends Sequelize.Model {}
+
+Actor.init(
+    {
+        nombre: { type: Sequelize.STRING },
+        apellido: { type: Sequelize.STRING }
+    },
+    {
+        sequelize,
+        modelName: 'actor'
+    });
+```
+
+
+Ruta para listar todos los actores
+```sh
+router.get('/', (req, res, next) => {
+  Actor.findAll()
+    .then( actores => res.json(actores))
+    .catch( err => res.json({ msn: err }))
+});
+```
+
+
+Filtrar actor por nombre
+```sh
+// Filtrar actor por nombre
+router.get('/:nombre', (req, res) => {
+  let _nombre = req.params.nombre
+  Actor.findAll({ where: { nombre: _nombre }}).then( actores => {
+      res.json(actores);
+  });
+});
+```
+
+
+Crear actor
+```sh
+router.post('/', (req, res)=> {
+  Actor.create(
+    { 
+      nombre: req.body.nombre,
+      apellido: req.body.apellido
+    })
+    .then( actores => res.json(actores))
+    .catch( err => res.json({ msn: err }))
+  });
+```
 
 
 ## Wiki 📖
 
-Puedes encontrar mucho más de cómo utilizar este proyecto en nuestra [Wiki](https://github.com/jocamo00/GeeksHubs-P3-Buscador-de-Peliculas.git)
+Puedes encontrar mucho más de cómo utilizar este proyecto en nuestra [Wiki](https://github.com/jocamo00/GeeksHubs-P4---BackendMovie.git)
 
 ## Versionado 📌
 
-Usamos [GitHub](https://github.com/) para el versionado. Para todas las versiones disponibles, mira los [tags en este repositorio](https://github.com/jocamo00/GeeksHubs-P3-Buscador-de-Peliculas.git).
+Usamos [GitHub](https://github.com/) para el versionado. Para todas las versiones disponibles, mira los [tags en este repositorio](https://github.com/jocamo00/GeeksHubs-P4---BackendMovie.git).
 
 ## Autores ✒️
 
@@ -44,6 +134,12 @@ Usamos [GitHub](https://github.com/) para el versionado. Para todas las versione
 ## Licencia 📄
 
 Este proyecto está bajo la Licencia http://www.apache.org/licenses/LICENSE-2.0
+
+
+
+
+
+
 
 
 
