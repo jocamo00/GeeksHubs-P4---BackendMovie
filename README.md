@@ -29,7 +29,7 @@ Programas utilizados para el desarrollo y pruebas del proyecto:
 
 ### Instalación 🔧
 
-Requiere [Node.js](https://nodejs.org/) v4+ para ejecutarse.
+Requiere [Node.js](https://nodejs.org/) v12+ para ejecutarse.
 
 Una vez descargado, descomprimido y ubicado en el directorio del proyecto, instale las dependencias y devDependencies.
 
